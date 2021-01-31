@@ -1,0 +1,61 @@
+<!-- TITLE -->
+<div class="mb-40 mt-40">
+    <h1>CreditLine Edit</h1>
+</div>
+<div class="card mb-40">
+    <div class="card-header">
+        <i class="fa fa-edit"></i> Edit
+    </div>
+    <div class="card-body">
+        <form #editForm="ngForm" [ngClass]="{'was-validated': formValid!=null}">
+            <div class="row justify-content-md-center">
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <label for="CreditLimit">CreditLimit *</label>
+                        <input type="number" class="form-control" id="CreditLimit" [(ngModel)]="item.CreditLimit" name="CreditLimit" #CreditLimit="ngModel" required>
+                        <div class="invalid-feedback">Value is required</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="EndDate">EndDate *</label>
+                        <input type="date" class="form-control" id="EndDate" [(ngModel)]="item.EndDate" name="EndDate" #EndDate="ngModel" required>
+                        <div class="invalid-feedback">Value is required</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="GroupCreditLimit">GroupCreditLimit</label>
+                        <input type="number" class="form-control" id="GroupCreditLimit" [(ngModel)]="item.GroupCreditLimit" name="GroupCreditLimit" #GroupCreditLimit="ngModel" >
+                    </div>
+                    <div class="form-group">
+                        <label for="StartDate">StartDate *</label>
+                        <input type="date" class="form-control" id="StartDate" [(ngModel)]="item.StartDate" name="StartDate" #StartDate="ngModel" required>
+                        <div class="invalid-feedback">Value is required</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Type">Type *</label>
+                        <select name="Type" id="Type" [(ngModel)]="item.Type" class="form-control" #Type="ngModel" required>
+                            <option value=""></option>
+                            <option value="NonRevolving">NonRevolving</option>
+                            <option value="Revolving">Revolving</option>
+                        </select>
+                        <div class="invalid-feedback">Value is required</div>
+                    </div>
+                    <!-- RELATIONS -->
+                    <h2 class="mb-20">Relations</h2>
+
+                    <label for="Organization">Organization</label>
+                    <select name="Organization" id="Organization" [(ngModel)]="item.Organization" class="form-control" #Organization="ngModel"  >
+                        <option *ngFor="let item of listOrganization" [value]="item._id">{{item._id}}</option>
+                    </select>
+
+                    
+        
+
+                    <!-- BUTTON BAR -->
+                    <div class="mt-40">
+                        <button class="btn btn-primary pull-right" (click)="save(editForm.valid, item)">Save</button>
+                        <button class="btn btn-secondary pull-right mr-2" (click)="goBack()">Back To List</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
